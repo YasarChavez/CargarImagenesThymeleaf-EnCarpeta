@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Lista de imagenes</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    </head>
+    <body>
+        <h1>Imagenes</h1>
+        <div th:each="imagen : ${imagenes}">
+            <!-- Base sin directorio -->
+            <!-- <img th:src="@{${imagen.path}}" alt="algo"> -->
+            <img th:src="'images/'+${imagen.path}" alt="este es el bueno" style="max-width: 100px" />
+        </div>
+    </body>
+</html>
