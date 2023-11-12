@@ -6,11 +6,18 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     </head>
     <body>
-        <h1>Imagenes</h1>
-        <div th:each="imagen : ${imagenes}">
-            <!-- Base sin directorio -->
-            <!-- <img th:src="@{${imagen.path}}" alt="algo"> -->
-            <img th:src="'images/'+${imagen.path}" alt="este es el bueno" style="max-width: 100px" />
+        <div class="container d-grid justify-content-center align-items-center" style="min-height: 100vh">
+            <h1>Imagenes</h1>
+            <div th:each="imagen : ${imagenes}">
+                <!-- Base sin directorio -->
+                <!-- <img th:src="@{${imagen.path}}" alt="algo"> -->
+                <!-- <img th:src="'images/'+${imagen.path}" alt="Con IMG Path" style="max-width: 100px" /> -->
+                <img th:src="${imagen.path}" alt="Sin IMG Path" style="max-width: 100px" />
+            </div>
+            <div>
+                <a name="" id="" class="btn btn-primary" href="/" role="button">⬅ Volver</a>
+                <a name="" id="" class="btn btn-primary" href="/upload" role="button">Subir Imagenes</a>
+            </div>
         </div>
     </body>
 </html>

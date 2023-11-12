@@ -24,6 +24,11 @@ public class ImageUploadController {
 
     private static String UPLOAD_FOLDER = "/images"; // Cambiar esto a la ubicación donde quieras almacenar las imagenes
 
+    @GetMapping("/")
+    public String index(){
+        return "index.html";
+    }
+
     @GetMapping("/upload")
     public String uploadForm() {
         return "uploadForm.html";
@@ -38,14 +43,6 @@ public class ImageUploadController {
         }
         try {
             // ? Todo esto se movio al servicio
-            // byte[] bytes = file.getBytes();
-            // String fileOriginalName = file.getOriginalFilename();
-            // File folder = new File(UPLOAD_FOLDER);
-            // if (!folder.exists()) {
-            // folder.mkdirs();
-            // }
-            // Files.write(Paths.get(UPLOAD_FOLDER + File.separator + fileOriginalName),
-            // bytes);
             String id = imageUploadService.uploadImage(file, UPLOAD_FOLDER);
             redirectAttributes.addFlashAttribute("message", "Archivo subido con éxito: \n" + id);
         } catch (IOException e) {

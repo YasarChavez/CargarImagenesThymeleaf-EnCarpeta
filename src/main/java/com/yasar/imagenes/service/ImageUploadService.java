@@ -20,22 +20,15 @@ public class ImageUploadService {
     @Autowired
     private ImagenRepository imagenRepository;
 
-    // public void uploadImage(MultipartFile file, String UPLOAD_FOLDER) throws
-    // Exception {
-    // byte[] bytes = file.getBytes();
-    // String fileOriginalName = file.getOriginalFilename();
-    // String id = UUID.randomUUID().toString();
-    // File folder = new File(UPLOAD_FOLDER);
-    // if (!folder.exists()) {
-    // folder.mkdirs();
-    // }
-    // Files.write(Paths.get(UPLOAD_FOLDER + File.separator + fileOriginalName),
-    // bytes);
-    // }
 
     public String uploadImage(MultipartFile file, String UPLOAD_FOLDER) throws Exception {
         byte[] bytes = file.getBytes(); // ? File es un array de bytes
         String fileOriginalName = file.getOriginalFilename(); // ? Nombre original del archivo
+
+        if (fileOriginalName == null || fileOriginalName.isEmpty() || fileOriginalName.isBlank()) {
+            fileOriginalName = "default.jpg";
+        }
+
         String extention = fileOriginalName.substring(fileOriginalName.lastIndexOf(".")); // ? Tipo de archivo
         String id = UUID.randomUUID().toString(); // ? Genera un identificador unico
         File folder = new File(UPLOAD_FOLDER);
@@ -43,7 +36,10 @@ public class ImageUploadService {
             folder.mkdirs();
         }
         Files.write(Paths.get(UPLOAD_FOLDER + File.separator + id + extention), bytes);
-        String nuevoNombre = id + extention;
+
+        // Nuevo nombre Imagen
+        // String nuevoNombre = id + extention;
+        String nuevoNombre = UPLOAD_FOLDER + "/" + id + extention;
 
         // Guardar en la base de datos
         Imagen imagen = new Imagen();
@@ -52,7 +48,8 @@ public class ImageUploadService {
 
         return nuevoNombre;
     }
-    public ArrayList<Imagen> getImages(){
+
+    public ArrayList<Imagen> getImages() {
         ArrayList<Imagen> imagenes = new ArrayList<Imagen>();
         imagenes = (ArrayList<Imagen>) imagenRepository.findAll();
         return imagenes;
