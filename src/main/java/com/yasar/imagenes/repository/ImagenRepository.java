@@ -4,5 +4,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.yasar.imagenes.model.Imagen;
 
-public interface ImagenRepository extends JpaRepository<Imagen,Integer>{
+public interface ImagenRepository extends JpaRepository<Imagen, Integer> {
 }

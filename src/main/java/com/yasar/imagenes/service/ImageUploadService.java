@@ -20,7 +20,6 @@ public class ImageUploadService {
     @Autowired
     private ImagenRepository imagenRepository;
 
-
     public String uploadImage(MultipartFile file, String UPLOAD_FOLDER) throws Exception {
         byte[] bytes = file.getBytes(); // ? File es un array de bytes
         String fileOriginalName = file.getOriginalFilename(); // ? Nombre original del archivo

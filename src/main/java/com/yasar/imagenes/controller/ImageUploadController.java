@@ -25,7 +25,7 @@ public class ImageUploadController {
     private static String UPLOAD_FOLDER = "/images"; // Cambiar esto a la ubicación donde quieras almacenar las imagenes
 
     @GetMapping("/")
-    public String index(){
+    public String index() {
         return "index.html";
     }
 
